@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <title>Quiz game</title>
+    <link rel="stylesheet" href="game.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+
 </head>
 <body>
     <div class = "card">
-        
-    </div>
-    <src = "./game.js"></src>
+        <header>Question
+        </header>
+        <div id = "main">
+            <label id = "inputlabel">Learn HTML colors: <br>Correctly answered questions are not repeated.<br></label>
+            <input type="text" id = "answer"><br>
+            <button id = "submit">Start</button>
+            <p id = "submitanswer"><br></p>
+        </div>
+        <footer></footer>
+        </div>
+    <script src = "./game.js"></script>
 
 </body>
 </html>
