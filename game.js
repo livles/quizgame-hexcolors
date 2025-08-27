@@ -12,18 +12,13 @@ let footer = document.querySelector("footer")
 let inputlabel = document.getElementById("inputlabel")
 let header = document.querySelector("header")
 let starttime = 0, duration = 0,averageduration = 0;
+
 // enter has same effect as submit button   
 document.addEventListener("keydown",(e) =>   {
     if (e.code == "Enter") {
         submit.click();
     }
 })
-// submit.onclick = function () {
-//     const text = answer.value; 
-//     main.style.backgroundColor = text;
-//     submitanswer.textContent = text
-//     answer.value = ""
-// }
 
 submit.onclick = function () {
     if (starttime) {
@@ -32,7 +27,6 @@ submit.onclick = function () {
     starttime = performance.now();
     const text = answer.value; 
     submitanswer.textContent = text
-    alert(count)
     
     if (count) {
         averageduration = ((count-1) * averageduration + duration) / count
@@ -76,23 +70,5 @@ submit.onclick = function () {
         inputlabel.textContent = ""
         submit.textContent = "Enter"
         answer.style.display = "inline-block"
-    }
-}
-
-    
-function showColor (color,document) {
-}
-    
-function testColor (color) {
-    content.style.color = color=="black"? "white" : "black"
-    content.style.backgroundColor = color
-    submit.onclick = function () {
-        if (answer.value != color) {
-            content.textContent = "Answer was " + answer.value  + ", but expected: " + color;
-        }
-        else {
-            right_answers++;
-            footer.textContent = "" + right_answers
-        }
     }
 }

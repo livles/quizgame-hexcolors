@@ -12,8 +12,6 @@ header {
 }
 
 #main {
-    /* border: 2px dotted rgb(96 139 168); */
-    /* background-color: white; */
     flex: 1;
     align-content: center;
     text-align: center;
