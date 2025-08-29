@@ -1,6 +1,6 @@
 let colors = ['black', 'navy', 'darkblue', 'mediumblue', 'blue', 'darkgreen', 'green', 'teal', 'darkcyan', 'deepskyblue', 'darkturquoise', 'mediumspringgreen', 'lime', 'springgreen', 'aqua', 'cyan', 'midnightblue', 'dodgerblue', 'lightseagreen', 'forestgreen', 'seagreen', 'darkslategray', 'darkslategrey', 'limegreen', 'mediumseagreen', 'turquoise', 'royalblue', 'steelblue', 'darkslateblue', 'mediumturquoise', 'indigo', 'darkolivegreen', 'cadetblue', 'cornflowerblue', 'rebeccapurple', 'mediumaquamarine', 'dimgray', 'dimgrey', 'slateblue', 'olivedrab', 'slategray', 'slategrey', 'lightslategray', 'lightslategrey', 'mediumslateblue', 'lawngreen', 'chartreuse', 'aquamarine', 'maroon', 'purple', 'olive', 'gray', 'grey', 'skyblue', 'lightskyblue', 'blueviolet', 'darkred', 'darkmagenta', 'saddlebrown', 'darkseagreen', 'lightgreen', 'mediumpurple', 'darkviolet', 'palegreen', 'darkorchid', 'yellowgreen', 'sienna', 'brown', 'darkgray', 'darkgrey', 'lightblue', 'greenyellow', 'paleturquoise', 'lightsteelblue', 'powderblue', 'firebrick', 'darkgoldenrod', 'mediumorchid', 'rosybrown', 'darkkhaki', 'silver', 'mediumvioletred', 'indianred', 'peru', 'chocolate', 'tan', 'lightgray', 'lightgrey', 'thistle', 'orchid', 'goldenrod', 'palevioletred', 'crimson', 'gainsboro', 'plum', 'burlywood', 'lightcyan', 'lavender', 'darksalmon', 'violet', 'palegoldenrod', 'lightcoral', 'khaki', 'aliceblue', 'honeydew', 'azure', 'sandybrown', 'wheat', 'beige', 'whitesmoke', 'mintcream', 'ghostwhite', 'salmon', 'antiquewhite', 'linen', 'lightgoldenrodyellow', 'oldlace', 'red', 'fuchsia', 'magenta', 'deeppink', 'orangered', 'tomato', 'hotpink', 'coral', 'darkorange', 'lightsalmon', 'orange', 'lightpink', 'pink', 'gold', 'peachpuff', 'navajowhite', 'moccasin', 'bisque', 'mistyrose', 'blanchedalmond', 'papayawhip', 'lavenderblush', 'seashell', 'cornsilk', 'lemonchiffon', 'floralwhite', 'snow', 'yellow', 'lightyellow', 'ivory', 'white']
 let viewed_colors = []
-let count = -1
+let count = 0
 let right_answers = 0;
 let index = -1;
 let content;
@@ -20,7 +20,15 @@ document.addEventListener("keydown",(e) =>   {
     }
 })
 
+// click
 submit.onclick = function () {
+    // alert(document.body.style.backgroundColor)
+    if (document.body.style.backgroundColor > "#333333") {
+        document.body.style.color = "white";
+    }else {
+        document.body.style.color = "black";
+    }
+
     if (starttime) {
         duration = performance.now() - starttime
     }
@@ -28,9 +36,6 @@ submit.onclick = function () {
     const text = answer.value; 
     submitanswer.textContent = text
     
-    if (count) {
-        averageduration = ((count-1) * averageduration + duration) / count
-    }
     answer.value = ""
     let color = document.body.style.backgroundColor
     if (index >= 0) {
@@ -39,6 +44,7 @@ submit.onclick = function () {
             colors.splice(colors.indexOf(color),1)
         } else if (viewed_colors.length){
             count ++;
+            averageduration = ((count-1) * averageduration + duration) / (count)
             console.log(color)
             if (text == color){
                 right_answers++;
@@ -71,4 +77,5 @@ submit.onclick = function () {
         submit.textContent = "Enter"
         answer.style.display = "inline-block"
     }
+    
 }
