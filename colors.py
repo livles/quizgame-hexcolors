@@ -297,12 +297,16 @@ White"""
 
 arr = string.split("\n")
 end = []
+hex = []
 for color in arr:
     if not color.startswith("#"):
         split_color = color.split()
         joined_color = "".join(split_color)
         lowercase_color = joined_color.lower()
         end.append(lowercase_color)
+    else:
+        hex.append(color)
 
 print(end)
+print(hex)
 print(len(end))

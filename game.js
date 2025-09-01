@@ -22,7 +22,6 @@ document.addEventListener("keydown",(e) =>   {
 
 // click
 submit.onclick = function () {
-    // alert(document.body.style.backgroundColor)
     if (document.body.style.backgroundColor > "#333333") {
         document.body.style.color = "white";
     }else {
@@ -38,6 +37,7 @@ submit.onclick = function () {
     
     answer.value = ""
     let color = document.body.style.backgroundColor
+    
     if (index >= 0) {
         if (index < 4 && colors.length && viewed_colors.length < 4) {
             viewed_colors.push(color)
@@ -77,5 +77,12 @@ submit.onclick = function () {
         submit.textContent = "Enter"
         answer.style.display = "inline-block"
     }
+    let rgb_color = window.getComputedStyle(document.body).backgroundColor
+    const rbg_values = (rgb_color.split("(")[1].split(")")[0]).split(", ")
+    const r = rbg_values[0]
+    const g = rbg_values[1]
+    const b = rbg_values[2]
+    bright = r > 50 && g > 50 && b > 50
+    document.body.style.color = bright ? "black" : "white"
     
 }
