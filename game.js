@@ -72,7 +72,6 @@ submit.onclick = function () {
                 submitanswer.textContent = "Expected: " + color + ", but was: " + text + "."
             }
             footer.textContent = "correct answers: " + right_answers + " out of " + count + " with average answer time: " + (averageduration / 1000).toFixed(2)  + " s."
-            console.log(viewed_colors,correct_answers,wrong_answers)
         } 
     }
     
@@ -80,6 +79,7 @@ submit.onclick = function () {
     index -= (index == 7 && viewed_colors.length) ? 1 : 0
     index = ( index + 1 ) % 8
     index = (viewed_colors.length + wrong_answers.length) >= 4 && index < 4 ? 4: index
+    index = index >= 4 && (viewed_colors.length + wrong_answers.length) == 0 ? 0 : index
     if (index < 4 && colors.length && (viewed_colors.length + wrong_answers.length) < 4) {
         const rand_idx = Math.floor(Math.random() * colors.length)
         color  = colors[rand_idx];
@@ -95,7 +95,7 @@ submit.onclick = function () {
         color = (rand_idx >= viewed_colors.length) ? wrong_answers[rand_idx - viewed_colors.length] : viewed_colors[rand_idx]
         // console.log(viewed_colors,wrong_answers,correct_answers,rand_idx,color)
         document.body.style.backgroundColor = color
-
+        
         header.innerHTML = "Type in correct color: <br>"
         inputlabel.textContent = ""
         submit.textContent = "Enter"
@@ -107,10 +107,11 @@ submit.onclick = function () {
     let g = parseInt(rbg_values[1])
     let b = parseInt(rbg_values[2])
     bright = (r + g + b ) / 3 > 100
-    const r_hex = r.toString(16).toUpperCase()
-    const g_hex = g.toString(16).toUpperCase()
-    const b_hex = b.toString(16).toUpperCase()
+    const r_hex = r.toString(16).toUpperCase().padStart(2,"0")
+    const g_hex = g.toString(16).toUpperCase().padStart(2,"0")
+    const b_hex = b.toString(16).toUpperCase().padStart(2,"0")
     hexcod.textContent = "#" + r_hex + g_hex + b_hex
     document.body.style.color = bright ? "black" : "white"
+    console.log(viewed_colors,correct_answers,wrong_answers)
     
 }
