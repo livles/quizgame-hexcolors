@@ -30,7 +30,7 @@ document.addEventListener("keydown",(e) =>   {
 
 // click
 submit.onclick = function () {
-
+    console.log(index)
     if (starttime) {
         duration = performance.now() - starttime
     }
@@ -53,8 +53,8 @@ submit.onclick = function () {
             averageduration = ((count-1) * averageduration + duration) / (count)
 
             //remove color
-            if (viewed_colors.splice(viewed_colors.indexOf(color),1).length) {}
-            else {wrong_answers.splice(wrong_answers.indexOf(color),1)}
+            viewed_colors.splice(viewed_colors.indexOf(color),1)
+             {wrong_answers.splice(wrong_answers.indexOf(color),1)}
             
             if (text == color){
                 right_answers++;
@@ -72,14 +72,15 @@ submit.onclick = function () {
                 submitanswer.textContent = "Expected: " + color + ", but was: " + text + "."
             }
             footer.textContent = "correct answers: " + right_answers + " out of " + count + " with average answer time: " + (averageduration / 1000).toFixed(2)  + " s."
-            // console.log(viewed_colors,correct_answers,wrong_answers)
+            console.log(viewed_colors,correct_answers,wrong_answers)
         } 
     }
     
     // show next card
     index -= (index == 7 && viewed_colors.length) ? 1 : 0
     index = ( index + 1 ) % 8
-    if (index < 4 && colors.length && viewed_colors.length < 4) {
+    index = (viewed_colors.length + wrong_answers.length) >= 4 && index < 4 ? 4: index
+    if (index < 4 && colors.length && (viewed_colors.length + wrong_answers.length) < 4) {
         const rand_idx = Math.floor(Math.random() * colors.length)
         color  = colors[rand_idx];
         document.body.style.backgroundColor = color;
