@@ -54,7 +54,7 @@ submit.onclick = function () {
 
             //remove color
             if (viewed_colors.splice(viewed_colors.indexOf(color),1).length) {}
-            else {alert();wrong_answers.splice(wrong_answers.indexOf(color),1)}
+            else {wrong_answers.splice(wrong_answers.indexOf(color),1)}
             
             if (text == color){
                 right_answers++;
@@ -72,7 +72,7 @@ submit.onclick = function () {
                 submitanswer.textContent = "Expected: " + color + ", but was: " + text + "."
             }
             footer.textContent = "correct answers: " + right_answers + " out of " + count + " with average answer time: " + (averageduration / 1000).toFixed(2)  + " s."
-            console.log(viewed_colors,correct_answers,wrong_answers)
+            // console.log(viewed_colors,correct_answers,wrong_answers)
         } 
     }
     
